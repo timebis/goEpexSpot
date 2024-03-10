@@ -39,7 +39,6 @@ type AuthOptions struct {
 
 type Country string
 
-// Define available country
 const (
 	France Country = "FR"
 )
