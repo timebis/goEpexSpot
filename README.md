@@ -4,7 +4,6 @@
 
 ![alt text](static/logo400.png)
 
-This repository facilitates access to electricity Day-ahead EPEX spot prices.
 GoEpexSpot aims to be a comprehensive API client for fetching Day-ahead EPEX SPOT prices using Golang. 
 
 Currently, EPEX SPOT and Nord Pool does not offer a free (or easily accesible) API for non-commercial uses.
@@ -35,10 +34,12 @@ This repository facilitates price-driven demand response, thereby encouraging en
 
 ## Description
 
-GoEpexSpot is designed to unlock the potential of Day-ahead EPEX spot prices for electricity through a unique Go-based API client. In the absence of a freely accessible electricty price API from EPEX SPOT or NordPool for non-commercial purposes, this repository shines a spotlight on alternative sources, beginning with access via the French Transmission System Operator (RTE) API for timely data retrieval. By enabling a price-driven demand response, GoEpexSpot not only facilitates financelly smarter energy consumption decisions but also promotes eco-friendly practices as energy price tend to be linked with CO2 emissions.
+GoEpexSpot is designed to unlock the potential of Day-ahead EPEX spot prices for electricity through a unique Go-based API client. In the absence of a freely accessible electricty price API from EPEX SPOT or NordPool for non-commercial purposes, this repository shines a spotlight on alternative sources, beginning with access via the French Transmission System Operator (RTE) API for timely data retrieval. By enabling a price-driven demand response, GoEpexSpot not only facilitates financially smarter energy consumption decisions but also promotes eco-friendly practices as energy price tend to be linked with CO2 emissions.
 
 
 ## Prerequisite
+
+### French Provider
 
 To use this repository, please ensure you meet the following requirements:
 
@@ -56,7 +57,7 @@ auth := goEpexSpot.AuthOptions{
 	Password: basicAuthPassword,
 }
 
-// Optionally, you can fetch your bearer token independently or use an existing one
+// Optionally, you can use your independently-fetched bearer token
 // bearerToken := os.Getenv("BEARER_TOKEN")
 // auth := AuthOptions{
 // 	BearerToken: bearerToken,

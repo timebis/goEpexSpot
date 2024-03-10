@@ -16,7 +16,7 @@ func main() {
 		Password: basicAuthPassword,
 	}
 
-	// if you want to fetch your bearer token by yourself or use an existing one
+	// Optionally, you can use your independently-fetched bearer token
 	// bearerToken := os.Getenv("BEARER_TOKEN")
 	// auth := AuthOptions{
 	// 	BearerToken: bearerToken,
@@ -28,7 +28,5 @@ func main() {
 	} else {
 		fmt.Printf("Market Data: %+v\n", epexSpotDayAhead)
 	}
-
-	fmt.Println("TestGetEpexSpot done")
 
 }
