@@ -1,0 +1,177 @@
+{
+   "swagger":"2.0",
+   "info":{
+      "title":"Wholesale Market",
+      "description":"Data related to the whole electricity market within EPEX Spot and Nord Pool hub Stock exchange operations.",
+      "version":"2.0"
+   },
+   "basePath":"/open_api/wholesale_market/v2",
+   "host":"digital.iservices.rte-france.com",
+   "schemes":[
+      "https"
+   ],
+   "paths":{
+      "/france_power_exchanges":{
+         "get":{
+            "description":"This service is for obtaining data about Epex Spot and Nord Pool prices and hourly volumes. Epex Spot is the daily electricity market operated by EPEX Spot SE. EPEX Spot SE is a European country (Societas Europaea ou SE) based in Paris with a branch in Leipzig. The range of products includes spot electricity transactions were Germany, France, Austria and Switzerland. These countries account for more than a third of total power consumption in Europe.",
+            "operationId":"001",
+            "consumes":[
+               "application/json"
+            ],
+            "produces":[
+               "application/json"
+            ],
+            "responses":{
+               "200":{
+                  "description":"OK",
+                  "schema":{
+                     "type":"array",
+                     "items":{
+                        "$ref":"#/definitions/france_power_exchanges"
+                     }
+                  }
+               },
+               "401":{
+                  "description":"Unauthorized",
+                  "schema":{
+                     "$ref":"#/definitions/error"
+                  }
+               },
+               "403":{
+                  "description":"Forbidden",
+                  "schema":{
+                     "$ref":"#/definitions/error"
+                  }
+               },
+               "404":{
+                  "description":"Not Found",
+                  "schema":{
+                     "$ref":"#/definitions/error"
+                  }
+               },
+               "408":{
+                  "description":"Request Time-out",
+                  "schema":{
+                     "$ref":"#/definitions/error"
+                  }
+               },
+               "413":{
+                  "description":"Request Entity Too Large",
+                  "schema":{
+                     "$ref":"#/definitions/error"
+                  }
+               },
+               "414":{
+                  "description":"Request-URI Too Long",
+                  "schema":{
+                     "$ref":"#/definitions/error"
+                  }
+               },
+               "429":{
+                  "description":"Too Many Requests",
+                  "schema":{
+                     "$ref":"#/definitions/error"
+                  }
+               },
+               "500":{
+                  "description":"Internal Server Error",
+                  "schema":{
+                     "$ref":"#/definitions/error"
+                  }
+               },
+               "503":{
+                  "description":"Service Unavailable",
+                  "schema":{
+                     "$ref":"#/definitions/error"
+                  }
+               },
+               "509":{
+                  "description":"Bandwidth Limit Exceeded",
+                  "schema":{
+                     "$ref":"#/definitions/error"
+                  }
+               }
+            }
+         }
+      }
+   },
+   "definitions":{
+      "france_power_exchanges":{
+         "type":"object",
+         "properties":{
+            "start_date":{
+               "type":"string",
+               "format":"date-time",
+               "description":"Start date for data requested (YYYY-MM-DDThh:mm:sszzzzzz)"
+            },
+            "end_date":{
+               "type":"string",
+               "format":"date-time",
+               "description":"End date for requested data (YYYY-MM-DDThh:mm:sszzzzzz)"
+            },
+            "updated_date":{
+               "type":"string",
+               "format":"date-time",
+               "description":"Date updated (YYYY-MM-DDThh:mm:sszzzzzz)"
+            },
+            "values":{
+               "type":"array",
+               "items":{
+                  "$ref":"#/definitions/value_france_power_exchanges"
+               }
+            }
+         }
+      },
+      "value_france_power_exchanges":{
+         "type":"object",
+         "properties":{
+            "start_date":{
+               "type":"string",
+               "format":"date-time",
+               "description":"Start time interval (YYYY-MM-DDThh:mm:sszzzzzz)"
+            },
+            "end_date":{
+               "type":"string",
+               "format":"date-time",
+               "description":"End time interval (YYYY-MM-DDThh:mm:sszzzzzz)"
+            },
+            "value":{
+               "type":"number",
+               "format":"float",
+               "description":"Volume of the electricity market (in MW)"
+            },
+            "price":{
+               "type":"number",
+               "format":"float",
+               "description":"Price (in €/MWh)"
+            }
+         }
+      },
+	  "error":{
+         "type":"object",
+         "properties":{
+            "error":{
+               "type":"string",
+               "description":"short_name, error's explicit description"
+            },
+            "error_description":{
+               "type":"string",
+               "description":"long name, readable by a user"
+            },
+            "error_uri":{
+               "type":"string",
+               "description":"See the API User Guide or the FAQ on https://data.rte-france.com"
+            },
+            "error_details":{
+               "type":"object",
+               "properties":{
+                  "transaction_id":{
+                     "type":"string",
+                     "description":"unique call identifier, useful in the event of an incident"
+                  }
+               }
+            }
+         }
+      }
+   }
+}
