@@ -313,12 +313,14 @@ func (c *APIClient) prepareRequest(
 func (c *APIClient) decode(v interface{}, b []byte, contentType string) (err error) {
 	if strings.Contains(contentType, "application/xml") {
 		if err = xml.Unmarshal(b, v); err != nil {
-			return err
+			return errors.Wrap(err, "error decoding XML response")
 		}
 		return nil
 	} else if strings.Contains(contentType, "application/json") {
+		// fmt.Printf("Response v: %+v\n", string(b))
+		// fmt.Printf("Response v: %+v\n", v)
 		if err = json.Unmarshal(b, v); err != nil {
-			return err
+			return errors.Wrap(err, "error decoding JSON response")
 		}
 		return nil
 	}

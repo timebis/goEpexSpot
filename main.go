@@ -27,7 +27,7 @@ func main() {
 	// Create a new API client configuration
 	cfg := swagger.NewConfiguration()
 	cfg.HTTPClient = &http.Client{}
-	cfg.AddDefaultHeader("Authorization", "Bearer "+bearerToken+"5") // Add the Authorization header with the Bearer token
+	cfg.AddDefaultHeader("Authorization", "Bearer "+bearerToken) // Add the Authorization header with the Bearer token
 
 	// Create a new API client with the configuration
 	client := swagger.NewAPIClient(cfg)
@@ -35,7 +35,8 @@ func main() {
 	// Assuming there's a GetMarketData method on your DefaultApi service
 	// Adjust the method and parameters according to your actual API
 	data, resp, err := client.DefaultApi.GetFrancePowerExchanges(context.Background())
-	fmt.Printf("Response: %+v\n", resp)
+	_ = resp
+	// fmt.Printf("Response: %+v\n", resp)
 	if err != nil {
 		log.Printf("Error while calling API: %+v", err)
 	} else {
