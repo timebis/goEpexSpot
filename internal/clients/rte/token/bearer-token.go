@@ -35,7 +35,7 @@ func FetchBearerToken(basicAuthUsername string, basicAuthPassword string) (strin
 	client := &http.Client{}
 	res, err := client.Do(req)
 	if err != nil {
-		return "", err
+		return "", errors.Wrap(err, "fetching token :")
 	}
 	if res.StatusCode != http.StatusOK {
 		return "", errors.Errorf("status %v when fetching token", res.StatusCode)

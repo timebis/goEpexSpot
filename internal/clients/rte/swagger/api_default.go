@@ -11,7 +11,6 @@ package swagger
 
 import (
 	"context"
-	"fmt"
 	"io/ioutil"
 	"net/http"
 	"net/url"
@@ -34,7 +33,7 @@ This service is for obtaining data about Epex Spot and Nord Pool prices and hour
 
 @return []FrancePowerExchanges
 */
-func (a *DefaultApiService) GetFrancePowerExchanges(ctx context.Context) ([]FrancePowerExchange, *http.Response, error) {
+func (a *DefaultApiService) GetFrancePowerExchanges(ctx context.Context) (RespData, *http.Response, error) {
 	var (
 		localVarHttpMethod  = strings.ToUpper("Get")
 		localVarPostBody    interface{}
@@ -69,26 +68,26 @@ func (a *DefaultApiService) GetFrancePowerExchanges(ctx context.Context) ([]Fran
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
-		return localVarReturnValue.France_power_exchange, nil, err
+		return localVarReturnValue, nil, err
 	}
-
-	fmt.Printf("Request: %v\n", r)
 
 	localVarHttpResponse, err := a.client.callAPI(r)
 	if err != nil || localVarHttpResponse == nil {
-		return localVarReturnValue.France_power_exchange, localVarHttpResponse, err
+		return localVarReturnValue, localVarHttpResponse, err
 	}
 
 	localVarBody, err := ioutil.ReadAll(localVarHttpResponse.Body)
 	localVarHttpResponse.Body.Close()
 	if err != nil {
-		return localVarReturnValue.France_power_exchange, localVarHttpResponse, err
+		return localVarReturnValue, localVarHttpResponse, err
 	}
 
 	if localVarHttpResponse.StatusCode < 300 {
 		// If we succeed, return the data, otherwise pass on to decode error.
 		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
-		return localVarReturnValue.France_power_exchange, localVarHttpResponse, err
+		// if localVarReturnValue.France_power_exchange = nil {
+
+		return localVarReturnValue, localVarHttpResponse, err
 	} else {
 		newErr := GenericSwaggerError{
 			body:  localVarBody,
@@ -100,10 +99,10 @@ func (a *DefaultApiService) GetFrancePowerExchanges(ctx context.Context) ([]Fran
 			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
-				return localVarReturnValue.France_power_exchange, localVarHttpResponse, newErr
+				return localVarReturnValue, localVarHttpResponse, newErr
 			}
 			newErr.model = v
-			return localVarReturnValue.France_power_exchange, localVarHttpResponse, newErr
+			return localVarReturnValue, localVarHttpResponse, newErr
 		}
 
 		if localVarHttpResponse.StatusCode >= 400 && localVarHttpResponse.StatusCode < 600 {
@@ -116,11 +115,10 @@ func (a *DefaultApiService) GetFrancePowerExchanges(ctx context.Context) ([]Fran
 			// newErr.model = v
 
 			// simplified error handling as rte dont give any error response
-			return localVarReturnValue.France_power_exchange, localVarHttpResponse, errors.New(localVarHttpResponse.Status)
+			return localVarReturnValue, localVarHttpResponse, errors.New(localVarHttpResponse.Status)
 		}
 
-		return localVarReturnValue.France_power_exchange, localVarHttpResponse, newErr
+		return localVarReturnValue, localVarHttpResponse, newErr
 	}
 
-	return localVarReturnValue.France_power_exchange, localVarHttpResponse, nil
 }

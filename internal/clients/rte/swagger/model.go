@@ -13,7 +13,7 @@ import "time"
 
 type RespData struct {
 	// Market data
-	France_power_exchange []FrancePowerExchange `json:"france_power_exchanges,omitempty"`
+	FrancePowerExchange []FrancePowerExchange `json:"france_power_exchanges,omitempty"`
 }
 
 type FrancePowerExchange struct {
