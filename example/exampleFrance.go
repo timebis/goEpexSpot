@@ -4,12 +4,14 @@ import (
 	"fmt"
 	"goEpexSpot"
 	"log"
+	"os"
 )
 
 func main() {
 
-	basicAuthUsername := "YOUR_BASIC_AUTH_USERNAME"
-	basicAuthPassword := "YOUR_BASIC_AUTH_PASSWORD"
+	basicAuthUsername := os.Getenv("BASIC_AUTH_USERNAME")
+	basicAuthPassword := os.Getenv("BASIC_AUTH_PASSWORD")
+	fmt.Printf("token : %v \n", basicAuthUsername)
 
 	auth := goEpexSpot.AuthOptions{
 		Username: basicAuthUsername,
