@@ -5,12 +5,20 @@ import (
 	"goEpexSpot"
 	"log"
 	"os"
+
+	"github.com/joho/godotenv"
 )
 
 func main() {
 
-	basicAuthUsername := os.Getenv("BASIC_AUTH_USERNAME")
-	basicAuthPassword := os.Getenv("BASIC_AUTH_PASSWORD")
+	err := godotenv.Load("/home/thomas/git/timebis/GoEpexSpot/.env")
+	if err != nil {
+		fmt.Printf("Error loading .env file: %+v", err)
+		panic(err)
+	}
+
+	basicAuthUsername := os.Getenv("RTE_API_BASIC_AUTH_USERNAME")
+	basicAuthPassword := os.Getenv("RTE_API_BASIC_AUTH_PASSWORD")
 	fmt.Printf("token : %v \n", basicAuthUsername)
 
 	auth := goEpexSpot.AuthOptions{

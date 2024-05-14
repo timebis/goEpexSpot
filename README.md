@@ -49,8 +49,8 @@ To use this repository, please ensure you meet the following requirements:
 ## Usage Example
 
 ```go
-basicAuthUsername := "YOUR_BASIC_AUTH_USERNAME"
-basicAuthPassword := "YOUR_BASIC_AUTH_PASSWORD"
+basicAuthUsername := "YOUR_RTE_API_BASIC_AUTH_USERNAME"
+basicAuthPassword := "YOUR_RTE_API_BASIC_AUTH_PASSWORD"
 
 auth := goEpexSpot.AuthOptions{
 	Username: basicAuthUsername,
