@@ -2,12 +2,12 @@ package main
 
 import (
 	"fmt"
-	"goEpexSpot"
 	"log"
+
+	"github.com/timebis/goEpexSpot"
 )
 
 func main() {
-
 	basicAuthUsername := "YOUR_BASIC_AUTH_USERNAME"
 	basicAuthPassword := "YOUR_BASIC_AUTH_PASSWORD"
 
@@ -28,5 +28,4 @@ func main() {
 	} else {
 		fmt.Printf("Market Data: %+v\n", epexSpotDayAhead)
 	}
-
 }

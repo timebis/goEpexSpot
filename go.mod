@@ -1,4 +1,4 @@
-module goEpexSpot
+module github.com/timebis/goEpexSpot
 
 go 1.21.5
 
