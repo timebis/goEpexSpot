@@ -46,6 +46,8 @@ To use this repository, please ensure you meet the following requirements:
 - **Account on RTE API Website**: You must have an account to access the RTE API. [Sign up or log in here](https://data.rte-france.com).
 - **Subscription to the "Wholesale Market" API**: Access requires a subscription to this specific API. Without it, you will encounter a 403 error. [Subscribe here](https://data.rte-france.com/catalog/-/api/market/Wholesale-Market/v2.0#).
 
+data is updated beetween 13:00 and 14:00 (french time). Before this time today's data is fetched. After that time next day data is fetched.
+
 ## Usage Example
 
 ```go

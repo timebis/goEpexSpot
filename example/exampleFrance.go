@@ -19,12 +19,13 @@ func main() {
 
 	basicAuthUsername := os.Getenv("RTE_API_BASIC_AUTH_USERNAME")
 	basicAuthPassword := os.Getenv("RTE_API_BASIC_AUTH_PASSWORD")
-	fmt.Printf("token : %v \n", basicAuthUsername)
 
 	auth := goEpexSpot.AuthOptions{
 		Username: basicAuthUsername,
 		Password: basicAuthPassword,
 	}
+
+	fmt.Printf("Basic Auth Username: %s\n", basicAuthUsername)
 
 	// Optionally, you can use your independently-fetched bearer token
 	// bearerToken := os.Getenv("BEARER_TOKEN")
