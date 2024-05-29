@@ -2,11 +2,11 @@ package main
 
 import (
 	"fmt"
-	"goEpexSpot"
 	"log"
 	"os"
 
 	"github.com/joho/godotenv"
+	"github.com/timebis/goEpexSpot"
 )
 
 func main() {
@@ -39,5 +39,4 @@ func main() {
 	} else {
 		fmt.Printf("Market Data: %+v\n", epexSpotDayAhead)
 	}
-
 }

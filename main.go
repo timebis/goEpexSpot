@@ -2,10 +2,12 @@ package goEpexSpot
 
 import (
 	"context"
-	"goEpexSpot/internal/clients/rte/swagger"
-	"goEpexSpot/internal/clients/rte/token"
 	"net/http"
 	"time"
+
+	"github.com/timebis/goEpexSpot/internal/clients/rte/token"
+
+	"github.com/timebis/goEpexSpot/internal/clients/rte/swagger"
 
 	errors "github.com/pkg/errors"
 )
@@ -59,14 +61,12 @@ func GetEpexSpot(countryCode Country, authOpts ...AuthOptions) (data EpexSpotDay
 }
 
 func rte(auth AuthOptions) (epexSpotDayAhead EpexSpotDayAhead, err error) {
-
 	// check if the auth options are valid given rte API
 	if auth.BearerToken == "" && (auth.Username == "" || auth.Password == "") {
 		return EpexSpotDayAhead{}, errors.New("BearerToken or {Username, Password} must be provided for french API")
-
 	}
 
-	var bearerToken = auth.BearerToken
+	bearerToken := auth.BearerToken
 
 	// Fetch the bearer token if not provided
 	if auth.BearerToken == "" {
